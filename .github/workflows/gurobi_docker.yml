@@ -26,5 +26,6 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a test script
+        shell: bash
         run: |
           cd $GUROBI_HOME/examples/build && make Mip1
