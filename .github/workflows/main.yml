@@ -37,19 +37,20 @@ jobs:
 
         run: |
           wget https://packages.gurobi.com/10.0/gurobi10.0.1_linux64.tar.gz
-          tar -xzf gurobi10.0.1_linux64.tar.gz
+          tar -xzf gurobi10.0.1_linux64.tar.gz -C $GITHUB_WORKSPACE
 
           # Set up environment variables
           echo "export GUROBI_HOME=$GITHUB_WORKSPACE/gurobi1001/linux64" >> $GITHUB_ENV
-          echo "$GUROBI_HOME"
-          echo "export GRB_LICENSE_FILE=$GUROBI_HOME/gurobi.lic" >> $GITHUB_ENV
-          echo "$GUROBI_HOME" >> $GITHUB_PATH
+          echo "export GRB_LICENSE_FILE=$GITHUB_WORKSPACE/gurobi1001/linux64/gurobi.lic" >> $GITHUB_ENV
+          echo " {{ env.GUROBI_HOME }}" >> $GITHUB_PATH
 
           echo "WLSACCESSID=$GRB_WLSACCESSID\nWLSSECRET=$GRB_WLSSECRET\nLICENSEID=928929" > {{ env.GRB_LICENSE_FILE }}
       
       - name: Run example script
+        env:
+          GRB_CLASSPATH: ${{ env.GUROBI_HOME }}/lib/gurobi.jar
         run: |
-          javac -cp .:/$GUROBI_HOME/lib/gurobi.jar Mip1.java
-          java -cp .:$GUROBI_HOME/lib/gurobi.jar Mip1
+          javac -cp .:$GRB_CLASSPATH Mip1.java
+          java -cp .:$GRB_CLASSPATH Mip1
 
 
