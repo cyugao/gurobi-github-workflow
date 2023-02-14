@@ -26,7 +26,5 @@ jobs:
       # Runs a single command using the runners shell
       - name: Use Gurobi Docker
         uses: docker://gurobi/optimizer
-
-      - name: Run example script
         run: |
           cd $GUROBI_HOME/examples/build && make Mip1
