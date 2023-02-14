@@ -53,8 +53,8 @@ jobs:
       
       - name: Run example script
         run: |
-          $GUROBI_HOME/bin/gurobi_cl
           cat $GRB_LICENSE_FILE
+          $GUROBI_HOME/bin/gurobi_cl
           javac -cp .:$LD_LIBRARY_PATH/gurobi.jar Mip1.java
           java -cp .:$LD_LIBRARY_PATH/gurobi.jar Mip1
 
