@@ -58,6 +58,7 @@ jobs:
       - name: Run example script
         run: |
           javac -cp .:$GRB_LIBPATH/gurobi.jar Mip1.java
+          ls -l $GRB_LIBPATH
           java -Djava.library.path $GRB_LIBPATH -cp .:$GRB_LIBPATH/gurobi.jar Mip1
 
 
