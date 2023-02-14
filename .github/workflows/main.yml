@@ -23,7 +23,7 @@ jobs:
     env:
       GUROBI_HOME: ${{ github.workspace }}/gurobi1001/linux64
       GRB_LICENSE_FILE: ${{ github.workspace }}/gurobi1001/linux64/gurobi.lic
-      GRB_LIBPATH: ${{ github.workspace }}/gurobi1001/linux64/lib
+      LD_LIBRARY_PATH: ${{ github.workspace }}/gurobi1001/linux64/lib
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -57,8 +57,7 @@ jobs:
       
       - name: Run example script
         run: |
-          cd $GUROBI_HOME/examples/build && make Mip1
-          # javac -cp .:$GRB_LIBPATH/gurobi.jar Mip1.java
-          # java -cp .:$GRB_LIBPATH/gurobi.jar Mip1
+          javac -cp .:$LD_LIBRARY_PATH/gurobi.jar Mip1.java
+          java -cp .:$LD_LIBRARY_PATH/gurobi.jar Mip1
 
 
