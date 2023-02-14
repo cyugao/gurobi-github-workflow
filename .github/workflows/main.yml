@@ -47,7 +47,7 @@ jobs:
           rm gurobi10.0.1_linux64.tar.gz
 
           # Set up environment variables
-          echo "{{ secrets.GUROBI_LICENSE }}" > $GRB_LICENSE_FILE
+          echo "${{ secrets.GUROBI_LICENSE }}" > $GRB_LICENSE_FILE
       
       - name: Run example script
         run: |
