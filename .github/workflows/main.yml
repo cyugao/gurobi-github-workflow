@@ -34,14 +34,14 @@ jobs:
         env:
           GRB_WLSACCESSID: ${{ secrets.GRB_WLSACCESSID }}
           GRB_WLSSECRET: ${{ secrets.GRB_WLSSECRET }}
-          GUROBI_HOME: $GITHUB_WORKSPACE/gurobi1001/linux64
+
         run: |
           wget https://packages.gurobi.com/10.0/gurobi10.0.1_linux64.tar.gz
           tar -xzf gurobi10.0.1_linux64.tar.gz
 
           # Set up environment variables
-          echo "$GITHUB_WORKSPACE"
-          echo "export GUROBI_HOME=$GUROBI_HOME" >> $GITHUB_ENV
+          echo "export GUROBI_HOME=$GITHUB_WORKSPACE/gurobi1001/linux64" >> $GITHUB_ENV
+          echo "$GUROBI_HOME"
           echo "export GRB_LICENSE_FILE=$GUROBI_HOME/gurobi.lic" >> $GITHUB_ENV
           echo "$GUROBI_HOME" >> $GITHUB_PATH
 
