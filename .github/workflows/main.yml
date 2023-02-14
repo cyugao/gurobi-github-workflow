@@ -40,14 +40,14 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Set up Gurobi and license
-        if: steps.cache-gurobi.outputs.cache-hit != 'true'
+        # if: steps.cache-gurobi.outputs.cache-hit != 'true'
         run: |
           wget https://packages.gurobi.com/10.0/gurobi10.0.1_linux64.tar.gz
           tar -xzf gurobi10.0.1_linux64.tar.gz -C $GITHUB_WORKSPACE
           rm gurobi10.0.1_linux64.tar.gz
 
           # Set up environment variables
-          echo {{ secrets.GUROBI_LICENSE }} > $GRB_LICENSE_FILE
+          echo -e "WLSACCESSID=d8784077-14a9-46a6-bd54-f57086ffc674\nWLSSECRET=2f79b3b8-7bdb-491c-b603-c82ce6f21566\nLICENSEID=928929" > $GRB_LICENSE_FILE
       
       - name: Run example script
         run: |
