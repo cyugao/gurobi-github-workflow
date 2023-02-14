@@ -47,11 +47,7 @@ jobs:
           rm gurobi10.0.1_linux64.tar.gz
 
           # Set up environment variables
-          cat << EOF > $GRB_LICENSE_FILE
-          WLSACCESSID=d8784077-14a9-46a6-bd54-f57086ffc674
-          WLSSECRET=2f79b3b8-7bdb-491c-b603-c82ce6f21566
-          LICENSEID=928929"
-          EOF
+          echo -e "WLSACCESSID=d8784077-14a9-46a6-bd54-f57086ffc674\r\nWLSSECRET=2f79b3b8-7bdb-491c-b603-c82ce6f21566\r\nLICENSEID=928929" > $GRB_LICENSE_FILE
       
       - name: Run example script
         run: |
