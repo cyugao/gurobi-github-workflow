@@ -50,6 +50,7 @@ jobs:
         env:
           GRB_CLASSPATH: ${{ env.GUROBI_HOME }}/lib/gurobi.jar
         run: |
+          echo "GRB_CLASSPATH=$GRB_CLASSPATH"
           javac -cp .:$GRB_CLASSPATH Mip1.java
           java -cp .:$GRB_CLASSPATH Mip1
 
