@@ -57,7 +57,8 @@ jobs:
       
       - name: Run example script
         run: |
-          ls $GRB_LIBPATH
-          java -cp .:$GRB_LIBPATH/gurobi.jar Mip1.java
+          cd $GUROBI_HOME/examples/build && make Mip1
+          # javac -cp .:$GRB_LIBPATH/gurobi.jar Mip1.java
+          # java -cp .:$GRB_LIBPATH/gurobi.jar Mip1
 
 
