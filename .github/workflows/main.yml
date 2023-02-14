@@ -23,7 +23,7 @@ jobs:
     env:
       GUROBI_HOME: ${{ github.workspace }}/gurobi1001/linux64
       GRB_LICENSE_FILE: ${{ github.workspace }}/gurobi1001/linux64/gurobi.lic
-      GRB_CLASSPATH: ${{ github.workspace }}/gurobi1001/linux64/lib/gurobi.jar
+      GRB_LIBPATH: ${{ github.workspace }}/gurobi1001/linux64/lib
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -37,7 +37,7 @@ jobs:
       # Cache Gurobi installation
       - name: Cache Gurobi installation
         id: cache-gurobi
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: $GUROBI_HOME
           key: ${{ runner.os }}-gurobi
@@ -57,8 +57,7 @@ jobs:
       
       - name: Run example script
         run: |
-          echo "GRB_CLASSPATH=$GRB_CLASSPATH"
-          javac -cp .:$GRB_CLASSPATH Mip1.java
-          java -cp .:$GRB_CLASSPATH Mip1
+          javac -cp .:$GRB_LIBPATH/gurobi.jar Mip1.java
+          java -Djava.library.path $GRB_LIBPATH -cp .:$GRB_LIBPATH/gurobi.jar Mip1
 
 
