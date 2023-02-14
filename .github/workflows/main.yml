@@ -30,10 +30,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
       # Cache Gurobi installation
       - name: Cache Gurobi installation
         id: cache-gurobi
@@ -51,8 +47,8 @@ jobs:
           rm gurobi10.0.1_linux64.tar.gz
 
           # Set up environment variables
-          echo "WLSACCESSID=${{ secrets.GRB_WLSACCESSID }}" > $GRB_LICENSE_FILE
-          echo "WLSSECRET=${{ secrets.GRB_WLSSECRET }}" >> $GRB_LICENSE_FILE
+          echo "WLSACCESSID=d8784077-14a9-46a6-bd54-f57086ffc674" > $GRB_LICENSE_FILE
+          echo "WLSSECRET=2f79b3b8-7bdb-491c-b603-c82ce6f21566" >> $GRB_LICENSE_FILE
           echo "LICENSEID=928929" >> $GRB_LICENSE_FILE
       
       - name: Run example script
