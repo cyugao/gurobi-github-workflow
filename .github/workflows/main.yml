@@ -23,6 +23,7 @@ jobs:
     env:
       GUROBI_HOME: ${{ github.workspace }}/gurobi1001/linux64
       LD_LIBRARY_PATH: ${{ github.workspace }}/gurobi1001/linux64/lib
+      GRB_LICENSE_FILE: ${{ github.workspace }}/gurobi1001/linux64/gurobi.lic
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -46,20 +47,9 @@ jobs:
           rm gurobi10.0.1_linux64.tar.gz
 
           # Set up environment variables
-          echo "WLSACCESSID=d8784077-14a9-46a6-bd54-f57086ffc674" > $GRB_LICENSE_FILE
-          echo "WLSSECRET=2f79b3b8-7bdb-491c-b603-c82ce6f21566" >> $GRB_LICENSE_FILE
-          echo "LICENSEID=928929" >> $GRB_LICENSE_FILE
+          echo -e "WLSACCESSID=d8784077-14a9-46a6-bd54-f57086ffc674\nWLSSECRET=2f79b3b8-7bdb-491c-b603-c82ce6f21566\nLICENSEID=928929" > $GRB_LICENSE_FILE
       
-      - shell: bash
-        id: write-license
-        env:
-          LICENSE: ${{ secrets.GUROBI_LICENSE   }}
-        run: |
-          echo "$LICENSE" > $PWD/gurobi.lic
-          echo "grb_license_file=$PWD/gurobi.lic" >> $GITHUB_OUTPUT
       - name: Run example script
-        env:
-          GRB_LICENSE_FILE: ${{ steps.write-license.outputs.grb_license_file }}
         run: |
           cat $GRB_LICENSE_FILE
           $GUROBI_HOME/bin/gurobi_cl
