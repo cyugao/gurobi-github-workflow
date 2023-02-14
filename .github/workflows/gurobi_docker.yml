@@ -16,6 +16,7 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    container: gurobi/optimizer
     # Gurobi path
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -24,7 +25,6 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
-      - name: Use Gurobi Docker
-        uses: docker://gurobi/optimizer
+      - name: Run a test script
         run: |
           cd $GUROBI_HOME/examples/build && make Mip1
