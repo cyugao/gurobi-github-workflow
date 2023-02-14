@@ -28,4 +28,6 @@ jobs:
       - name: Run a test script
         shell: bash
         run: |
-          cd $GUROBI_HOME/examples/build && make Mip1
+          # cd $GUROBI_HOME/examples/build && make Mip1
+          ls $GUROBI_HOME
+          java -cp .:$GUROBI_HOME/lib/gurobi.jar Mip1.java
